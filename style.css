@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    /* font-size: 16px; */
     letter-spacing: 2px;
     box-sizing: border-box;
 }
@@ -22,18 +23,20 @@ span {
 #header {
     width: 100%;
     height: 100vh;
-    /* background-image: url(showcase/output/preview.png); */
-    background-size: cover;
-    background-position: center;
 }
 
 .showcase {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
     z-index: -1;
+}
+
+#showcase_vertical {
+    display: none;
+    top: 0;
 }
 
 .sub-title {
@@ -52,6 +55,7 @@ span {
     border: 1px solid #ff004f;
     border-radius: 6px;
     text-decoration: none;
+    text-align: center;
     color: white;
     background-color: #080808;
     transition: background 0.5s;
@@ -62,15 +66,24 @@ span {
 }
 
 .container {
+    position: relative;
+    overflow: hidden;
     padding: 0 10%;
 }
 
+/*------------------- Navigation bar -------------------*/
 nav {
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    /* background-color: #262626; */
+}
+
+nav ul {
+    z-index: 10;
+    transition: right 0.8s;
 }
 
 nav ul li {
@@ -102,15 +115,44 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+#nav-menu-toggle {
+    display: contents;
+}
+
+#nav-menu-toggle input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+#nav-menu-toggle input:checked+i {
+    color: #ff004f;
+}
+
+#nav-menu-toggle input:checked+i+ul {
+    right: 0;
+}
+
+nav .fa-solid {
+    display: none;
+}
+
 /*------------------- Welcome -------------------*/
+#header>.container {
+    height: 100vh;
+}
+
 .header-text {
-    margin-top: 5%;
+    margin-top: 3vh;
     font-size: 30px;
+    background: #262626cc;
+    padding: 3%;
+    border-radius: 8px;
+    width: fit-content;
 }
 
 .header-text h1 {
     font-size: 60px;
-    margin-top: 20px;
 }
 
 .company {
@@ -124,7 +166,7 @@ nav ul li a:hover::after {
     height: 1.25em;
 }
 
-.book-meeting-btn {
+#book-meeting-btn {
     margin-top: 30px;
     margin-left: 0;
 }
@@ -134,12 +176,22 @@ nav ul li a:hover::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 40px;
+    /* display: flex;
+    flex-wrap: wrap; */
     justify-items: center;
+    /* justify-content: space-evenly; */
     align-items: start;
 }
 
 .service {
-    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 20px;
+    /* min-height: 200px; */
+    /* max-width: 300px; */
     list-style: none;
     text-align: center;
     background: #262626;
@@ -151,23 +203,18 @@ nav ul li a:hover::after {
 }
 
 .service:hover {
-    background-color: #ff0051c4;
+    background-color: #bb003a;
     transform: translateY(-10px);
 }
 
 .service i {
     color: #ff004f;
     font-size: 50px;
-    margin-bottom: 30px;
     transition: color 0.5s;
 }
 
 .service:hover i {
     color: rgba(0, 0, 0, 0.6);
-}
-
-.service h1 {
-    margin-bottom: 10px;
 }
 
 .service label {
@@ -176,7 +223,6 @@ nav ul li a:hover::after {
     cursor: pointer;
     font-size: 12px;
     font-weight: 500;
-    margin-bottom: 15px;
 }
 
 .service label::before {
@@ -257,7 +303,7 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
-.tabs input {
+.tabs>input {
     display: none;
 }
 
@@ -266,7 +312,7 @@ nav ul li a:hover::after {
     color: #ff004f;
 }
 
-.tabs label {
+.tabs>label {
     position: relative;
     font-size: 22px;
     margin: 8px 16px;
@@ -275,7 +321,7 @@ nav ul li a:hover::after {
     transition: color 0.5s;
 }
 
-.tabs label::after {
+.tabs>label::after {
     content: '';
     width: 0;
     height: 3px;
@@ -287,8 +333,8 @@ nav ul li a:hover::after {
     transition: 0.5s;
 }
 
-.tabs label:hover::after,
-.tabs input:checked+label::after {
+.tabs>label:hover::after,
+.tabs>input:checked+label::after {
     width: 100%;
 }
 
@@ -298,13 +344,13 @@ nav ul li a:hover::after {
     display: none;
 }
 
-.tabs input:checked+label+.work-list {
+.tabs>input:checked+label+.work-list {
     display: grid;
 }
 
 .work-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 40px;
     margin-top: 20px;
 }
@@ -313,12 +359,15 @@ nav ul li a:hover::after {
     border-radius: 8px;
     position: relative;
     overflow: hidden;
+    max-height: 600px;
+    min-height: 200px;
+    transition: min-height 0.5s;
 }
 
 .work img {
     object-fit: cover;
     width: 100%;
-    height: 500px;
+    height: 350px;
     border-radius: 8px;
     display: block;
     filter: sepia(40%) saturate(120%) contrast(115%);
@@ -339,6 +388,7 @@ nav ul li a:hover::after {
     background: linear-gradient(rgba(0, 0, 0, 0.6), #ff004f);
     border-radius: 8px;
     position: absolute;
+    padding: 0 40px;
     left: 0;
     bottom: 0;
     overflow: hidden;
@@ -346,7 +396,6 @@ nav ul li a:hover::after {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 40px;
     text-align: center;
     font-size: 14px;
     transition: height 0.5s;
@@ -358,7 +407,11 @@ nav ul li a:hover::after {
 
 .layer h3 {
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.layer p {
+    font-size: 12px;
 }
 
 .links {
@@ -384,6 +437,10 @@ nav ul li a:hover::after {
 }
 
 /*------------------ Studies -------------------*/
+#studies-list {
+    align-items: stretch;
+}
+
 .study {
     min-height: 300px;
     background: #262626;
@@ -415,6 +472,10 @@ nav ul li a:hover::after {
     justify-content: space-between;
 }
 
+.study-title span {
+    font-size: 40px;
+}
+
 .study-title h2 {
     font-size: 20px;
     font-weight: 500;
@@ -442,12 +503,13 @@ nav ul li a:hover::after {
 }
 
 .reference {
-    width: 20em;
     text-decoration: none;
     text-align: center;
+    margin-bottom: 12px;
 }
 
 .reference img {
+    width: 20em;
     transition: 0.5s;
     filter: saturate(0.0);
 }
@@ -482,6 +544,7 @@ nav ul li a:hover::after {
     margin: 15px auto 0;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-items: center;
     justify-content: space-evenly;
     align-items: center;
@@ -493,6 +556,7 @@ nav ul li a:hover::after {
 
 .contact-info p {
     display: flex;
+    margin: 5px 10px;
 }
 
 .contact-info p i {
@@ -568,7 +632,6 @@ form textarea {
 }
 
 form .submit-btn {
-    padding: 14px 60px;
     font-size: 18px;
     margin: 0;
     cursor: pointer;
@@ -581,4 +644,120 @@ form .submit-btn {
     background-color: #262626;
     font-weight: 300;
     margin-top: 20px;
+}
+
+/*------------------ Responsiveness -------------------*/
+@media only screen and (orientation: portrait),
+(max-width: 1024px) {
+    .sub-title {
+        font-size: 2.5em;
+    }
+
+    .header-text {
+        margin-top: 30%;
+        font-size: 16px;
+    }
+
+    .header-text h1 {
+        margin-top: 20px;
+        font-size: 30px;
+    }
+
+    #showcase_vertical {
+        display: initial;
+    }
+
+    #showcase_horizontal {
+        display: none;
+    }
+
+    nav .fa-solid {
+        display: initial;
+        font-size: 25px;
+    }
+
+    nav ul {
+        background: #bb003a;
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        padding-top: 30px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 2em;
+    }
+
+    nav ul .fa-solid {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        cursor: pointer;
+    }
+
+    .header-text {
+        margin-top: 80%;
+    }
+
+    #book-meeting-btn {
+        position: absolute;
+        bottom: 5%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .service {
+        flex-direction: row;
+    }
+
+    .service i {
+        font-size: 40px;
+    }
+
+    .service h1 {
+        font-size: 20px;
+    }
+
+    .tabs {
+        justify-content: center;
+    }
+
+    .tabs label {
+        font-size: 18px;
+        margin: 8px 8px;
+    }
+
+    .social a {
+        margin: 0 5px;
+    }
+
+    .copyright {
+        font-size: 14px;
+        padding: 15px 0;
+    }
+
+    .reference img {
+        width: 12em;
+    }
+
+    .reference p {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .contact-info {
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: normal;
+        font-size: 14px;
+    }
+
+    .work:hover {
+        min-height: 500px;
+    }
 }

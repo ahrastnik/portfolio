@@ -19,18 +19,26 @@
           <img src="assets/WhitMotionLogo.png" alt="" class="logo">
           <h3>WHIT<span>MOTION</span></h3>
         </div>
-        <ul>
-          <li><a href="#header">Welcome</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#studies">Studies</a></li>
-          <li><a href="#references">References</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <label id="nav-menu-toggle">
+          <input type="checkbox" name="nav-toggle">
+          <i class="fa-solid fa-bars"></i>
+          <ul>
+            <li><a href="#header">Welcome</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#studies">Studies</a></li>
+            <li><a href="#references">References</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <i class="fa-solid fa-xmark"></i>
+          </ul>
+        </label>
       </nav>
       <video id="showcase_horizontal" class="showcase" autoplay muted loop
         poster="assets/showcase/showcase_horizontal.png">
         <source src="assets/showcase/showcase_horizontal.mp4" type="video/mp4">
+      </video>
+      <video id="showcase_vertical" class="showcase" autoplay muted loop>
+        <source src="assets/showcase/showcase_vertical.mp4" type="video/mp4">
       </video>
       <div class="header-text">
         <div id="slogan">
@@ -42,7 +50,7 @@
           </h2>
         </div>
       </div>
-      <a href="#contact" class="btn book-meeting-btn">Book a meeting</a>
+      <a href="#contact" id="book-meeting-btn" class="btn">Book a meeting</a>
     </div>
   </div>
   <div id="services">
@@ -279,7 +287,7 @@
   <div id="studies">
     <div class="container">
       <h1 class="sub-title">Studies</h1>
-      <div class="services-list">
+      <div id="studies-list" class="services-list">
         <a class="study" href="assets/articles/RHI_final_report_ADAM_HRASTNIK_JAKA_KOVŠE.pdf" target="_blank">
           <div class="study-title">
             <h2><span>C</span>ompliant dynamic movement primitives</h2>
@@ -335,7 +343,7 @@
           <p>Sentinel Marine</p>
         </a>
         <a class="reference" href="https://www.ubiquityrobotics.com/" target="_blank">
-          <img src="assets/clients/ubiquity_robotics_logo.png" alt="">
+          <img src="assets/clients/ubiquity_robotics_logo.png" alt="" style="width: 12em;">
           <p>Ubiquity Robotics</p>
         </a>
       </div>
@@ -355,6 +363,7 @@
         <form>
           <input type="text" name="Name" placeholder="Your name" required>
           <input type="text" name="Email" placeholder="Your email" required>
+          <!-- TODO: Accept company field -->
           <textarea name="Message" rows="6" placeholder="Write me a message"></textarea>
           <div class="submission-row">
             <button type="submit" class="btn submit-btn">Submit</button>
